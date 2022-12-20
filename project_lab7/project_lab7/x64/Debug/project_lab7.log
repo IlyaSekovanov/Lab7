@@ -1,0 +1,4 @@
+﻿  project_lab7.cpp
+E:\Laba7\Lab7\project_lab7\project_lab7\project_lab7.cpp(153,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  LINK : не найден или не выполнена сборка E:\Laba7\Lab7\project_lab7\x64\Debug\project_lab7.exe при последней инкрементной компоновке; выполняется полная компоновка
+  project_lab7.vcxproj -> E:\Laba7\Lab7\project_lab7\x64\Debug\project_lab7.exe
