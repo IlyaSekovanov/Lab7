@@ -83,6 +83,21 @@ void vstavka(std::vector<long int>& s, int size) // сортировка вст�
 	}
 }
 
+void shell(vector <long int> &arr, long long int N)  //Шелла (Никита Бфрхатов)
+{
+	for (long long int d = N / 2; d > 0; d /= 2)
+	{
+		for (long long int i = d; i < N; i++)
+		{
+			long long int el = arr[i];
+			long long int j;
+			for (j = i; j >= d && arr[j - d] > el; j -= d)
+				arr[j] = arr[j - d];
+			arr[j] = el;
+		}
+	}
+}
+
 int main() {
 	int t = 1000; // Количество тестов
 	cout << "MergeSort HeapSort InsertionSort" << endl; //Названия писать сюда
@@ -123,6 +138,17 @@ int main() {
 		end = std::chrono::steady_clock::now();
 
 		std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms" << "      ";
+
+		for (int i = 0; i < n; ++i) {
+			s[i] = rand(); //Переопределение вектора рандомными числами
+		}
+
+		start = std::chrono::steady_clock::now();
+		shell(s, n); //Шелла (Никита Бфрхатов)
+		end = std::chrono::steady_clock::now();
+
+		std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms" << "      ";
+
 		cout << endl;
 	}
 }
