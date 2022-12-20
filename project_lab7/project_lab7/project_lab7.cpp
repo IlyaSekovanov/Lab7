@@ -7,8 +7,8 @@ using namespace std;
 void outVector(std::vector<long int>& s, int n) //Вывод вектора (Если нужно)
 {
 	for (int i = 0; i < n; ++i) {
-				cout << s[i] << endl; 
-			}
+		cout << s[i] << endl;
+	}
 }
 void mergeSort(std::vector<long int>& s, size_t start, size_t end) { //Сортировка слиянием (Илья)
 	if (end - start < 2) {
@@ -39,9 +39,9 @@ void mergeSort(std::vector<long int>& s, size_t start, size_t end) { //Сорт�
 	for (size_t i = start; i < end; ++i) {
 		s[i] = b[i - start];
 	}
-}
+} //сортировка слиянием
 
-void heapify(vector <long int> &arr, int n, int i) // функция для пирамидальной
+void heapify(vector <long int>& arr, int n, int i) // функция для пирамидальной
 {
 	int largest = i;
 	int l = 2 * i + 1;
@@ -59,22 +59,38 @@ void heapify(vector <long int> &arr, int n, int i) // функция для пи
 
 void heapsort(vector <long int> arr, int n) //Пирамидальная (Влад)
 {
-		for (int i = n / 2 - 1; i >= 0; i--)
-			heapify(arr, n, i);
-		for (int i = n - 1; i >= 0; i--)
+	for (int i = n / 2 - 1; i >= 0; i--)
+		heapify(arr, n, i);
+	for (int i = n - 1; i >= 0; i--)
+	{
+		swap(arr[0], arr[i]);
+		heapify(arr, i, 0);
+	}
+}
+
+void vstavka(std::vector<long int>& s, int size) // сортировка вставками (Саша)
+{
+	long int indexlast, element, j, i;
+	for (i = 1; i < size; i++)
+	{
+		element = s[i];
+		indexlast = i - 1;
+		for (j = indexlast; j >= 0 && element < s[j]; j--)
 		{
-			swap(arr[0], arr[i]);
-			heapify(arr, i, 0);
+			s[j + 1] = s[j];
 		}
+		s[j + 1] = element;
+	}
 }
 
 int main() {
 	int t = 1000; // Количество тестов
-	cout << "MergeSort HeapSort ...other" << endl; //Названия писать сюда
+	cout << "MergeSort HeapSort InsertionSort" << endl; //Названия писать сюда
 	while (--t)
 	{
 		srand(time(0));
 		int n = 10000000; // Количество элементов
+		int k = 10000; // кол-во элементов для сортировки вставками
 		std::vector<long int> s(n);
 		for (int i = 0; i < n; ++i) {
 			s[i] = rand();
@@ -93,7 +109,17 @@ int main() {
 		}
 
 		start = std::chrono::steady_clock::now();
-		heapsort(s, n); //Пирамидальная (Влад)
+		heapsort(s, n); //Пирамидальная Влад
+		end = std::chrono::steady_clock::now();
+
+		std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms" << "      ";
+
+		std::vector<long int> v(k); //вектор для сортировки вставками
+		for (long long int i = 0; i < k; i++) {
+			v[i] = rand();
+		}
+		start = std::chrono::steady_clock::now();
+		vstavka(v, k); // Вызов сортировки вставками
 		end = std::chrono::steady_clock::now();
 
 		std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms" << "      ";
