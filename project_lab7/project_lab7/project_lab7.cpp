@@ -83,7 +83,7 @@ void vstavka(std::vector<long int>& s, int size) // сортировка вст�
 	}
 }
 
-void shell(vector <long int> &arr, long long int N)  //Шелла (Никита Бфрхатов)
+void shell(vector <long int> &arr, long long int N)  //Шелла (Никита Бархатов)
 {
 	for (long long int d = N / 2; d > 0; d /= 2)
 	{
@@ -98,9 +98,34 @@ void shell(vector <long int> &arr, long long int N)  //Шелла (Никита 
 	}
 }
 
+void qsort(vector<long int> &s, int size) { //быстрая сортировка (Никита Литовкин)
+	int i = 0;
+	int j = size - 1;
+	int mid = s[size / 2];
+	do {
+		while (s[i] < mid) {
+			i++;
+		}
+		while (s[j] > mid) {
+			j--;
+		}
+		if (i <= j) {
+			int tmp = s[i]; s[i] = s[j]; s[j] = tmp;
+			i++;
+			j--;
+		}
+	} while (i <= j);
+	if (j > 0) {
+		qsort(s, j + 1);
+	}
+	if (i < size) {
+		qsort(s, size - i);
+	}
+}
+
 int main() {
 	int t = 1000; // Количество тестов
-	cout << "MergeSort HeapSort InsertionSort" << endl; //Названия писать сюда
+	cout << "MergeSort   HeapSort   InsertionSort   ShellSort   QuickSort" << endl; //Названия писать сюда
 	while (--t)
 	{
 		srand(time(0));
@@ -144,11 +169,19 @@ int main() {
 		}
 
 		start = std::chrono::steady_clock::now();
-		shell(s, n); //Шелла (Никита Бфрхатов)
+		shell(s, n); //Шелла (Никита Бархатов)
 		end = std::chrono::steady_clock::now();
 
 		std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms" << "      ";
 
-		cout << endl;
+		for (int i = 0; i < n; ++i) {
+			s[i] = rand(); //Переопределение вектора рандомными числами
+		}
+
+		start = std::chrono::steady_clock::now();
+		qsort(s, n); // Быстрая сортировка Никита Литовкин
+		end = std::chrono::steady_clock::now();
+
+		std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms" << "      " << std::endl;
 	}
 }

@@ -1,3 +1,8 @@
 ﻿  project_lab7.cpp
-E:\Laba7\Lab7\project_lab7\project_lab7\project_lab7.cpp(76,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  project_lab7.vcxproj -> E:\Laba7\Lab7\project_lab7\x64\Debug\project_lab7.exe
+C:\Users\Админ\Desktop\Lab7\project_lab7\project_lab7\project_lab7.cpp(96,13): warning C4244: =: преобразование "__int64" в "_Ty", возможна потеря данных
+          with
+          [
+              _Ty=long
+          ]
+C:\Users\Админ\Desktop\Lab7\project_lab7\project_lab7\project_lab7.cpp(131,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  project_lab7.vcxproj -> C:\Users\Админ\Desktop\Lab7\project_lab7\x64\Debug\project_lab7.exe
